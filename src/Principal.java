@@ -41,13 +41,19 @@ public class Principal {
                     
                     System.out.println("Ingrese el Precio $ ");
                     double precio = sc.nextDouble();
+                    while (precio <= 0) {
+                        System.out.println("El precio tiene que ser mayor a 0.");
+                        System.out.println("Ingrese el precio: ");
+                        precio = sc.nextDouble();
+                    }
 
                     System.out.println("Ingrese la cantidad de stock: ");
-                    while (!sc.hasNextInt()) {
-                        System.out.println("Tiene que ser numérico");
-                        System.out.println("Ingrese stock Numérico.");
+                    int stock = sc.nextInt();
+                    while (stock <= 0) {
+                        System.out.println("El stock tiene que ser mayor a 0.");
+                        System.out.println("Ingrese stock: ");
+                        stock = sc.nextInt();
                     }
-                        int stock = sc.nextInt(); 
                      
                     producto.agregarProductos(nombre, precio, stock);
                     break;
