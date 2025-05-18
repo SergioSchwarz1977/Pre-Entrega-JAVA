@@ -1,12 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.print.DocFlavor.READER;
-
 public class Producto {
-    public static final String AMARILLO = "\u001B[33m";
-    public static final String MAGENTA = "\u001B[35m";
-    final String RESET = "\u001B[0m";
+    private static final String AMARILLO = "\u001B[33m";
+    private static final String MAGENTA = "\u001B[35m";
+    private static final String RESET = "\u001B[0m";
     private static int contadorId = 0;
     private int id;
     private String nombre;
