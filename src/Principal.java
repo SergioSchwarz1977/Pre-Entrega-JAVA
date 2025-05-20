@@ -7,15 +7,14 @@ public class Principal {
         final String VERDE = "\u001B[32m";
         final String AZUL = "\u001B[34m";
 
-        Producto producto = new Producto();  
-        Pedido pedido = new Pedido();      
+        Producto producto = new Producto();           
         Scanner sc = new Scanner(System.in);
         boolean salir = true;
         int opcion = 0;
 
         do {
             
-            System.out.println("***************************");
+            System.out.println(VERDE +"***************************");
             System.out.println("****  MENU PRINCIPAL  *****");
             System.out.println("***************************\n" + RESET);
 
@@ -30,6 +29,7 @@ public class Principal {
 
             System.out.println(ROJO + "Elija una opcion: " + RESET);
             opcion = sc.nextInt();
+
 
             switch (opcion) {
                 case 1:
@@ -85,9 +85,10 @@ public class Principal {
                     String nombrePedido = sc.nextLine();
                     System.out.println("Ingrese la cantidad: ");
                     int cantidad = sc.nextInt();
-                    pedido.agregarPedido(nombrePedido, cantidad);
+                    producto.agregarPedido(nombrePedido, cantidad);
                     break;
                 case 7:
+                    producto.listarPedido();
                     break;
                 case 8:
                     System.out.println(ROJO + "Saliendo del programa...." + RESET);

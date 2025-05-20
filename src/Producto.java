@@ -109,6 +109,7 @@ public class Producto {
     }
 
     public void eliminarProducto(String nombre) {
+
         for (Producto p : producto) {
             if (p.getNombre().equalsIgnoreCase(nombre)) {
                 System.out.println("Desea eliminar el producto ? : S/N");
@@ -124,6 +125,36 @@ public class Producto {
 
         }
 
+    }
+
+    public void agregarPedido(String nombrePedido, int cantidad) {
+        ArrayList<String>pedido=new ArrayList<>();
+        for (Producto p : producto) {
+            if (p.getNombre().equalsIgnoreCase(nombrePedido)) {
+                if (p.getStock() >= cantidad) {
+                    double precioFinal = p.getPrecio() * cantidad;
+                    p.setStock(p.getStock() - cantidad);
+                    System.out.println("Pedido realizado con exito...");
+                    System.out.println("Nombre Producto: " + p.getNombre() + " Cantidad: " + cantidad
+                    + " Precio Final $: " + precioFinal);
+                    pedido.add(nombrePedido + p.getNombre() + cantidad + precioFinal);
+                    System.out.println(AMARILLO + "************  Lista de Pedidos:  *************" + RESET);
+                    System.out.println("Nombre del Producto: " + p.getNombre());
+                    System.out.println("Precio Final $: " + precioFinal);
+                            
+                } else {
+                    System.out.println("No hay suficiente Stock..");
+                }
+            }else{
+
+                System.out.println("Producto no encontrado..");
+            }
+        }
+        
+    }
+    
+    public void listarPedido(){
+        
     }
 
 }
