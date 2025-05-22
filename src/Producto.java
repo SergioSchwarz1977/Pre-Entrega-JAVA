@@ -98,15 +98,31 @@ public class Producto {
     // }
 
     public void buscarPorNombre(String nombreBuscar) {
-        for (Producto p : productos) {
-            if (p.getNombre().equalsIgnoreCase(nombreBuscar)) {
-                System.out.println(AMARILLO + "**********  Producto encontrado:   **********" + RESET);
-                System.out.println(p.toString());
-
-            } else {
-                System.out.println("No se encontró Producto con nombre: " + nombreBuscar);
+        int contador = 0;
+        if (productos.isEmpty()) {
+            System.out.println("No hay productos en stock.");
+        } else {
+            System.out.println(AMARILLO + "************  Producto encontrado: *************" + RESET);
+            for (Producto p : productos) {
+                if (p.getNombre().toLowerCase().contains(nombreBuscar.toLowerCase())) {
+                    ArrayList<String>letras = new ArrayList<>();
+                    letras.add(p.getNombre());
+                    System.out.println(p.toString());
+                    contador++;
+                    
+                }
             }
         }
+        if (contador == 0) {
+            System.out.println("No se encontró el producto con el nombre: " + nombreBuscar);
+        } 
+           
+    }
+    public boolean buscarPorLetras(String letras) {
+        String nombre = letras.toLowerCase();
+        return nombre.contains(letras.toLowerCase());
+
+        
     }
 
     public void buscarPorID(int id) {
