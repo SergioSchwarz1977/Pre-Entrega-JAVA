@@ -12,16 +12,16 @@ public class Pedido extends Producto {
     public Pedido() {
     }
 
-    public Pedido(int id, int cantidad, double precioFinal, Producto producto) {
+    public Pedido(int id, int cantidad, double precioFinal, String nombre) {
         this.id = ++contadorId;
         this.cantidad = 0;
         this.precioFinal = 0;
-        this.producto = producto;
+        this.nombre = nombre;
     }
 
     public Pedido(int id, String nombre, double precio, int stock) {
         super(id, nombre, precio, stock);
-        this.id = contadorId;
+        this.id = ++contadorId;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
@@ -66,12 +66,9 @@ public class Pedido extends Producto {
     public void setProductos(Producto producto) {
         this.producto = producto;
     }
-
-    // @Override
-    // public String toString() {
-    // return "Pedido:" + producto;
-    // }
-
+    public String getNombre() {
+        return nombre;
+    }
     ArrayList<Pedido> pedido = new ArrayList<>();
 
     @Override
@@ -81,42 +78,40 @@ public class Pedido extends Producto {
     }
 
     public void agregarPedido(String nombrePedido, int cantidad) {
-        for (Producto p : productos) {
-            if (p.getNombre().equalsIgnoreCase(nombrePedido)) {
-                if (p.getStock() >= cantidad) {
-                    p.setStock(p.getStock() - cantidad);
-                    precioFinal = p.getPrecio() * cantidad;
-                    pedido.add(new Pedido(id, cantidad, precioFinal, p));
-                    System.out.println("Pedido agregado con exito.");
-                } else {
-                    System.out.println("No hay suficiente stock.");
-                }
-            } else {
-                System.out.println("Producto no encontrado.");
+        if (productos.isEmpty()) {
+            System.out.println("No hay productos.");
+        } else {
+                for (Producto p : productos) {
+                    if (p.getStock() >= cantidad) {
+                        p.setStock(p.getStock() - cantidad);
+                        precioFinal = p.getPrecio() * cantidad;
+                        pedido.add(new Pedido(id, cantidad, precioFinal, nombrePedido));
+                        System.out.println("Pedido agregado con exito.");
+                        System.out.println(AMARILLO + "************  Lista del Pedido:  *************" + RESET);
+                        System.out.println("Nombre del Producto: " + nombrePedido);
+                        System.out.println("Cantidad: " + cantidad);
+                        System.out.println("Precio Final $: " + precioFinal);
+                        pedido.size();
+                        break;
+                    } else {
+                        System.out.println("No hay suficiente stock.");
+                        break;
+                    }
+                } 
             }
-        }
-        for (Pedido p : pedido) {
-            if (pedido.isEmpty()) {
-                System.out.println("No hay pedidos.");
-            } else
-                System.out.println(AMARILLO + "************  Lista de Pedidos:  *************" + RESET);
-            System.out.println("Nombre del Producto: " + p.getProductos().getNombre());
-            System.out.println("Cantidad: " + cantidad);
-            System.out.println("Precio Final $: " + precioFinal);
-        }
     }
 
     public void listarPedido() {
         if (pedido.isEmpty()) {
             System.out.println("No hay pedidos.");
-
         } else {
             System.out.println(AMARILLO + "************  Lista de Pedidos:  *************" + RESET);
             for (Pedido pedidos : pedido) {
                 // System.out.println(pedido.toString());
-                System.out.println("Nombre del Producto: " + pedidos.getProductos().getNombre());
-                System.out.println("Cantidad: " + pedidos.getCantidad());
+                System.out.println("Nombre del Producto: " + pedidos.getNombre());
+                //System.out.println("Cantidad: " + pedidos.getCantidad());
                 System.out.println("Precio Final $: " + precioFinal);
+                System.out.println(AMARILLO + "******************************************" + RESET);
             }
 
         }

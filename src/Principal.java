@@ -86,9 +86,11 @@ public class Principal {
                     break;
                 case 5:
                     sc.nextLine();// limpiar buffer
-                    System.out.println("Ingrese el Nombre del producto a eliminar: ");
-                    String nombreEliminar = sc.nextLine();
-                    producto.eliminarProducto(nombreEliminar);
+                    producto.listarProducto();
+                    System.out.println(AZUL + "********   Eliminar Producto:  ***********" + RESET);
+                    System.out.println("Ingrese el ID del producto a eliminar: ");
+                    int idEliminar = sc.nextInt();
+                    producto.eliminarProducto(idEliminar);
                     break;
                 case 6:
                     sc.nextLine();// limpiar buffer
@@ -96,6 +98,7 @@ public class Principal {
                     System.out.println(AZUL + "********   Agregar Pedido:  ***********" + RESET);
                     System.out.println("Ingrese el Nombre del produco: ");
                     String nombrePedido = sc.nextLine();
+
                     System.out.println("Ingrese la cantidad: ");
                     int cantidad = sc.nextInt();
                     pedido.agregarPedido(nombrePedido, cantidad);
