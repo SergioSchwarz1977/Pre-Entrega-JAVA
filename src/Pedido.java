@@ -66,9 +66,11 @@ public class Pedido extends Producto {
     public void setProductos(Producto producto) {
         this.producto = producto;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     ArrayList<Pedido> pedido = new ArrayList<>();
 
     @Override
@@ -81,7 +83,8 @@ public class Pedido extends Producto {
         if (productos.isEmpty()) {
             System.out.println("No hay productos.");
         } else {
-                for (Producto p : productos) {
+            for (Producto p : productos) {
+                if (p.getNombre().equalsIgnoreCase(nombrePedido)) {
                     if (p.getStock() >= cantidad) {
                         p.setStock(p.getStock() - cantidad);
                         precioFinal = p.getPrecio() * cantidad;
@@ -93,12 +96,17 @@ public class Pedido extends Producto {
                         System.out.println("Precio Final $: " + precioFinal);
                         pedido.size();
                         break;
+
                     } else {
-                        System.out.println("No hay suficiente stock.");
-                        break;
+                        System.out.println("Producto no encontrado.");
+                        return;
+
                     }
-                } 
+
+                }
+
             }
+        }
     }
 
     public void listarPedido() {
@@ -109,7 +117,7 @@ public class Pedido extends Producto {
             for (Pedido pedidos : pedido) {
                 // System.out.println(pedido.toString());
                 System.out.println("Nombre del Producto: " + pedidos.getNombre());
-                //System.out.println("Cantidad: " + pedidos.getCantidad());
+                // System.out.println("Cantidad: " + pedidos.getCantidad());
                 System.out.println("Precio Final $: " + precioFinal);
                 System.out.println(AMARILLO + "******************************************" + RESET);
             }
