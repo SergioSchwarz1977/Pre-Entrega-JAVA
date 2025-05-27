@@ -95,7 +95,7 @@ public class Pedido extends Producto {
                         System.out.println("Cantidad: " + cantidad);
                         System.out.println("Precio Final $: " + precioFinal);
                         pedido.size();
-                        break;
+                        return;
 
                     } else {
                         System.out.println("Producto no encontrado.");
@@ -106,6 +106,7 @@ public class Pedido extends Producto {
                 }
 
             }
+            System.out.println("No se encontró el producto con el nombre: " + nombrePedido);
         }
     }
 
