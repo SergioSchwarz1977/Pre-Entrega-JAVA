@@ -1,0 +1,4 @@
+# Ignorar archivos compilados y carpetas de salida
+/bin/
+/*.class
+
